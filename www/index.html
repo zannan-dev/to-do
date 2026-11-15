@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f2f7">
+  <title>Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Splash Screen -->
+<div class="splash-screen" id="splashScreen">
+  <div class="splash-logo">✓</div>
+</div>
+
+<!-- Top scroll depth backdrop -->
+<div class="top-depth-mask" id="topDepthMask"></div>
+
+<div class="app-shell">
+
+  <header class="topbar" id="topbar">
+    <div class="header-pill">
+      <div class="header-avatar">✓</div>
+      <div class="header-titles">
+        <h1>Tasks</h1>
+        <p id="taskCount">0 tasks remaining</p>
+      </div>
+    </div>
+    <button class="top-circle-button" id="addButton" aria-label="Add new task">＋</button>
+  </header>
+
+  <main>
+    <div id="taskList" class="task-list"></div>
+
+    <div class="empty-state" id="emptyState">
+      <h3>No tasks yet...</h3>
+    </div>
+  </main>
+
+</div>
+
+<!-- Add task modal -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal">
+    <div class="modal-heading">
+      <h3>New Task</h3>
+      <button type="button" id="closeModal" class="close-button">×</button>
+    </div>
+
+    <form id="taskForm">
+      <input
+        id="taskTitle"
+        type="text"
+        placeholder="What needs to be done?"
+        required
+        maxlength="100"
+      >
+
+      <div class="datetime-section">
+        <div class="quick-dates">
+          <button type="button" class="chip-btn" id="todayChip">Today</button>
+          <button type="button" class="chip-btn" id="tomorrowChip">Tomorrow</button>
+          <button type="button" class="chip-btn clear-chip" id="clearDateChip">No date</button>
+        </div>
+
+        <div class="datetime-row">
+          <button type="button" class="picker-trigger" id="dateTrigger">
+            <span>Date</span>
+            <strong id="dateDisplay">Today</strong>
+          </button>
+          <button type="button" class="picker-trigger" id="timeTrigger">
+            <span>Time</span>
+            <strong id="timeDisplay">None</strong>
+          </button>
+        </div>
+
+        <!-- Custom Calendar Drawer -->
+        <div class="custom-picker-panel" id="calendarPanel">
+          <div class="cal-nav">
+            <button type="button" id="prevMonthBtn" aria-label="Previous month">‹</button>
+            <strong id="calendarMonthLabel">November 2026</strong>
+            <button type="button" id="nextMonthBtn" aria-label="Next month">›</button>
+          </div>
+          <div class="cal-weekdays">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="cal-days" id="calendarDays"></div>
+        </div>
+
+        <!-- Custom Time Drawer -->
+        <div class="custom-picker-panel" id="timePanel">
+          <div class="time-picker-grid">
+            <div class="time-unit-col">
+              <button type="button" class="step-btn" id="hourUp">▲</button>
+              <div class="time-val" id="hourVal">09</div>
+              <button type="button" class="step-btn" id="hourDown">▼</button>
+            </div>
+
+            <span class="time-colon">:</span>
+
+            <div class="time-unit-col">
+              <button type="button" class="step-btn" id="minUp">▲</button>
+              <div class="time-val" id="minVal">00</div>
+              <button type="button" class="step-btn" id="minDown">▼</button>
+            </div>
+
+            <div class="ampm-toggle">
+              <button type="button" class="ampm-btn active" id="amBtn">AM</button>
+              <button type="button" class="ampm-btn" id="pmBtn">PM</button>
+            </div>
+          </div>
+
+          <div class="time-panel-actions">
+            <button type="button" class="time-clear-btn" id="clearTimeBtn">Clear</button>
+            <button type="button" class="time-done-btn" id="doneTimeBtn">Set time</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="submit-button" type="submit">Add task</button>
+    </form>
+  </div>
+</div>
+
+<!-- Delete confirmation alert -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="alert-dialog">
+    <h3>Delete Task</h3>
+    <p id="deleteMessage">This can’t be undone. Are you sure you want to remove this task?</p>
+    <div class="alert-actions">
+      <button type="button" class="alert-btn-danger" id="confirmDeleteBtn">Delete</button>
+      <button type="button" class="alert-btn-cancel" id="cancelDeleteBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
