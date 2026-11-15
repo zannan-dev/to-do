@@ -303,6 +303,12 @@ function closeDeleteAlert() {
   deleteModal.classList.remove("show");
 }
 
+function updateTaskCount() {
+  const remaining = tasks.filter(t => !t.completed).length;
+  document.getElementById("taskCount").textContent =
+    `${remaining} ${remaining === 1 ? "task" : "tasks"} remaining`;
+}
+
 confirmDeleteBtn.addEventListener("click", () => {
   if (pendingDeleteId !== null) {
     tasks = tasks.filter(t => t.id !== pendingDeleteId);
@@ -336,7 +342,13 @@ function renderTasks() {
     check.addEventListener("click", () => {
       task.completed = !task.completed;
       saveTasks();
-      renderTasks();
+      item.classList.toggle("completed", task.completed);
+      check.textContent = task.completed ? "✓" : "";
+      check.setAttribute(
+        "aria-label",
+        task.completed ? "Mark incomplete" : "Complete task"
+      );
+      updateTaskCount();
     });
 
     const content = document.createElement("div");
@@ -371,9 +383,7 @@ function renderTasks() {
   document.getElementById("emptyState")
     .classList.toggle("show", tasks.length === 0);
 
-  const remaining = tasks.filter(t => !t.completed).length;
-  document.getElementById("taskCount").textContent =
-    `${remaining} ${remaining === 1 ? "task" : "tasks"} remaining`;
+  updateTaskCount();
 }
 
 // Add modal controls
