@@ -10,6 +10,8 @@
   --accent: #2395ef;
   --accent-soft: #e4f2fd;
   --danger: #c62828;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 * {
@@ -83,7 +85,7 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 92px;
+  height: calc(var(--safe-top) + 84px);
   z-index: 9;
   pointer-events: none;
   background: linear-gradient(
@@ -108,14 +110,14 @@ button {
   max-width: 500px;
   min-height: 100vh;
   margin: auto;
-  padding: 12px 14px 60px;
+  padding: calc(var(--safe-top) + 12px) 14px calc(var(--safe-bottom) + 60px);
 }
 
 /* Floating Pill Header */
 
 .topbar {
   position: sticky;
-  top: calc(10px + env(safe-area-inset-top));
+  top: calc(var(--safe-top) + 12px);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -748,5 +750,3 @@ button {
   background: var(--bg);
   color: var(--text);
 }
-
-
